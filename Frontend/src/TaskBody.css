@@ -1,0 +1,13 @@
+body {
+    background: #f3f2f1;
+}
+
+#titulo {
+    color: black;
+    padding-bottom: 15px;
+}
+
+#taskbody {
+    margin-left: 280px;
+    margin-top: 70px;
+}
