@@ -38,6 +38,18 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "djangorestframework"
+version = "3.14.0"
+description = "Web APIs for Django, made easy."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=3.0"
+pytz = "*"
+
+[[package]]
 name = "pytz"
 version = "2022.1"
 description = "World timezone definitions, modern and historical"
@@ -56,11 +68,12 @@ python-versions = ">=3.5"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "468ba505cbcfdf108da6a9f1ec4bb2eddcdbc83ccd260d39a4b23159cbf6ef18"
+content-hash = "8057c7103e1ff977c569d8b0d542b379659461452e841ca06241ac9b69ce9447"
 
 [metadata.files]
 asgiref = []
 dj-database-url = []
 django = []
+djangorestframework = []
 pytz = []
 sqlparse = []
