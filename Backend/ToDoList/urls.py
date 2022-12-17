@@ -1,11 +1,11 @@
 from django.urls import path
-from .api import ListaApiView, TaskApiView
+from .api import ListaApiView, TaskApiView, ListaIdApiView, TaskIdApiView
 from . import views
 
 urlpatterns = [
     path('', views.homePage, name="home"),
     path("lists/", ListaApiView.as_view()),
     path("tasks/", TaskApiView.as_view()),
-    path("list/<listName>", views.lists, name="list"),
-    path("tasks/<taskName>", views.tasks, name="task"),
+    path("lists/<int:listID>", ListaIdApiView.as_view()),
+    path("tasks/<int:taskID>", TaskIdApiView.as_view()),
 ]
