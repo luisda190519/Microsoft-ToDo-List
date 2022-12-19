@@ -7,7 +7,7 @@ const TaskBody = function (props) {
     let [text, setText] = useState("")
 
     const getListData = async function(){
-        const result = await fetch("http://localhost:3000/tasks")
+        const result = await fetch("http://localhost:3000/taskszzz")
         .then((data) =>{
             return data.json()
         })
