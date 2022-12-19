@@ -1,4 +1,4 @@
-import SidebarCard from "./SidebarCard";
+import SidebarCard from "../SidebarCard";
 import "./Sidebar.css";
 
 const Navbar = function (props) {

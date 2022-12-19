@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Sidebar from "./Sidebar";
-import TaskBody from "./TaskBody";
+import Sidebar from "./Views/Sidebar";
+import TaskBody from "./Views/TaskBody";
 import "./TaskBody.css"
 
 const App = function (props) {

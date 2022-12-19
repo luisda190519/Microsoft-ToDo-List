@@ -1,5 +1,5 @@
-import TaskCard from "./TaskCard";
-import NewTask from "./NewTask";
+import TaskCard from "../Components/TaskCard";
+import NewTask from "../Components/NewTask";
 import { useState } from "react";
 
 const TaskBody = function (props) {
