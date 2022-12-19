@@ -1,23 +1,23 @@
 import TaskCard from "../Components/TaskCard";
 import NewTask from "../Components/NewTask";
-import { useState } from "react";
+import { useState, useEffect, useParams } from "react";
+import { getRequest } from "../Components/Request";
 
 const TaskBody = function (props) {
+    //const params = useParams();
 
-    let [text, setText] = useState("")
-
-    const getListData = async function(){
-        const result = await fetch("http://localhost:3000/taskszzz")
-        .then((data) =>{
-            return data.json()
-        })
-        .catch((err) =>{
-            return false
-        })       
+    const getTasks = async function(){
+        try {
+            const res = await getRequest("/tasks")
+            console.log(res);
+        } catch (error) {
+            
+        }
     }
 
-    setText(getListData)
-    console.log(text);
+    useEffect(() =>{
+        getTasks();
+    },[]);
 
     return (
         <div>

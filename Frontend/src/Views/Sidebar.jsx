@@ -1,7 +1,7 @@
-import SidebarCard from "../SidebarCard";
-import "./Sidebar.css";
+import SidebarCard from "../Components/SidebarCard";
+import "../CSS/Sidebar.css";
 
-const Navbar = function (props) {
+const Sidebar = function (props) {
     
     return (
         <header id="sidebar">
@@ -36,4 +36,4 @@ const Navbar = function (props) {
     );
 };
 
-export default Navbar;
+export default Sidebar;
