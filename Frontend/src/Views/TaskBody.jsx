@@ -8,7 +8,7 @@ const TaskBody = function (props) {
 
     const getTasks = async function(){
         try {
-            const res = await getRequest("/tasks")
+            const res = await getRequest("/tasks/1")
             console.log(res);
         } catch (error) {
             

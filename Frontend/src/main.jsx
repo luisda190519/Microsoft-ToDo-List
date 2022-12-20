@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Sidebar />
             <div>
                 <Routes>
-                    <Route path="/:listID" element={<App/>} />
+                    <Route path="/list/:listID" element={<App/>} />
                 </Routes>
             </div>
         </BrowserRouter>
