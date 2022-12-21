@@ -8,13 +8,7 @@ import Sidebar from "./Views/Sidebar";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Sidebar />
-            <div>
-                <Routes>
-                    <Route path="/list/:listID" element={<App/>} />
-                </Routes>
-            </div>
-        </BrowserRouter>
+        <Sidebar />
+        <App/>
     </React.StrictMode>
 );
