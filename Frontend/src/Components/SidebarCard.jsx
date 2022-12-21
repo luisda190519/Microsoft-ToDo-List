@@ -54,10 +54,15 @@ const SidebarCard = function (props) {
             break;
     }
 
+    const handleClick = function(e){
+        console.log(e)
+    }
+
     return (
         <a
             className="list-group-item list-group-item-action py-2 ripple"
             aria-current="true"
+            onClick={(e) => handleClick(e)}
         >
             {cardImage}
             <i className="me-3"></i>

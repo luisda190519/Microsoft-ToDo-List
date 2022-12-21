@@ -12,7 +12,6 @@ import "./CSS/TaskBody.css"
 const App = function (props) {
     return (
       <BrowserRouter>
-            
             <div className="container w-75" id="taskbody">
                 <Routes>
                     <Route path="/list/:listID" element={<TaskBody/>} />

@@ -19,9 +19,9 @@ const Sidebar = function (props) {
 
                 <div className="position-sticky">
                     <div className="list-group list-group-flush mx-3 mt-4">
-                        <SidebarCard label="Importante" type="star" link="/hola" />
-                        <SidebarCard label="Luis" type="list"/>
-                        <SidebarCard label="Luis" type="list"/>
+                        <SidebarCard label="Importante" type="star" link="/important" />
+                        <SidebarCard label="Luis" type="list" link="/a"/>
+                        <SidebarCard label="Luis" type="list" link="/b"/>
                     </div>
 
                     <div
