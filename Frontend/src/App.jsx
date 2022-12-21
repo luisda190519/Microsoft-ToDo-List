@@ -1,25 +1,29 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //Components
 import Sidebar from "./Views/Sidebar";
 import TaskBody from "./Views/TaskBody";
 import PageNotFound from "./Views/PageNotFound";
+import NewList from "./Views/NewList";
 
 //Css
-import "./CSS/TaskBody.css"
+import "./CSS/TaskBody.css";
 
 const App = function (props) {
+    const [list, setList] = useState(1);
+
+    const setListBySideBar = function(list){
+      setList(list)
+    } 
+
     return (
-      <BrowserRouter>
+        <div>
+            <Sidebar setListParent={setListBySideBar}/>
             <div className="container w-75" id="taskbody">
-                <Routes>
-                    <Route path="/list/:listID" element={<TaskBody/>} />
-                    <Route path="*" exact element={<PageNotFound />} />
-                </Routes>
+                {list ? <TaskBody list={list} /> : <NewList/>}
             </div>
-        </BrowserRouter>
-    )
+        </div>
+    );
 };
 
 export default App;

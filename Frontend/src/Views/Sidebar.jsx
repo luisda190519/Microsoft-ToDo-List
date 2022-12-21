@@ -1,8 +1,41 @@
 import SidebarCard from "../Components/SidebarCard";
 import "../CSS/Sidebar.css";
+import { useState } from "react";
+import useFetch from "react-fetch-hook";
 
 const Sidebar = function (props) {
-    
+    const [list, setList] = useState(1);
+    const { isLoading, data, error } = useFetch("http://localhost:3000/lists");
+    let listCards = null;
+
+    const setListBySideBar = function (list) {
+        setList(list);
+        props.setListParent(list);
+    };
+
+    if (error) {
+        return (
+            <div>
+                <p>Code: ${error.status}</p>
+                <p>Message: ${error.statusText}</p>
+            </div>
+        );
+    }
+
+    if (!isLoading) {
+        listCards = data.map((list, i) => {
+            return (
+                <SidebarCard
+                    label={list.name}
+                    type="list"
+                    setListParent={setListBySideBar}
+                    list={list}
+                    key={i}
+                />
+            );
+        });
+    }
+
     return (
         <header id="sidebar">
             <nav
@@ -19,16 +52,24 @@ const Sidebar = function (props) {
 
                 <div className="position-sticky">
                     <div className="list-group list-group-flush mx-3 mt-4">
-                        <SidebarCard label="Importante" type="star" link="/important" />
-                        <SidebarCard label="Luis" type="list" link="/a"/>
-                        <SidebarCard label="Luis" type="list" link="/b"/>
+                        <SidebarCard
+                            label="Important"
+                            type="star"
+                            setListParent={setListBySideBar}
+                            list={{ id: "important", name: "Important" }}
+                        />
+                        {listCards}
                     </div>
 
                     <div
                         className="list-group list-group-flush mx-3"
                         style={{ marginTop: "175%" }}
                     >
-                        <SidebarCard label="New List" type="add" links="/"/>
+                        <SidebarCard
+                            label="New List"
+                            type="add"
+                            setListParent={setListBySideBar}
+                        />
                     </div>
                 </div>
             </nav>

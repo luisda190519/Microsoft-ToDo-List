@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const SidebarCard = function (props) {
     let cardImage = null;
+    const [list, setList] = useState(1);
 
     switch (props.type) {
         case "add":
@@ -55,7 +56,8 @@ const SidebarCard = function (props) {
     }
 
     const handleClick = function(e){
-        console.log(e)
+        setList(props.list)
+        props.setListParent(props.list)
     }
 
     return (

@@ -131,3 +131,10 @@ class setTaskById(APIView):
     instance.delete()
     return Response({"res":"List deleted"}, status=status.HTTP_200_OK)
 
+
+#Get important tasks
+class getImportantTasks(APIView):
+  def get(self, request, *args, **kwargs):
+    queryset = Task.objects.filter(important = True)
+    serializer = TaskSerializer(queryset, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

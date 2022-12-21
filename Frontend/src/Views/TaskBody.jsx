@@ -1,29 +1,34 @@
 import TaskCard from "../Components/TaskCard";
 import NewTask from "../Components/NewTask";
 import { useState, useEffect, useParams } from "react";
-import { getRequest } from "../Components/Request";
+import useFetch from "react-fetch-hook";
 
 const TaskBody = function (props) {
-    //const params = useParams();
+    const { isLoading, data, error } = useFetch("http://localhost:3000/tasks/" + props.list.id);
+    let tasks = null;
 
-    const getTasks = async function(){
-        try {
-            const res = await getRequest("/tasks/1")
-            console.log(res);
-        } catch (error) {
-            
-        }
+    if (error) {
+        return (
+            <div>
+                <p>Code: ${error.status}</p>
+                <p>Message: ${error.statusText}</p>
+            </div>
+        );
     }
 
-    useEffect(() =>{
-        getTasks();
-    },[]);
+    if (!isLoading) {
+        tasks = data.map((task, i) =>{
+            return <div className="mb-4" key={i}>
+                <TaskCard name={task.name}/>
+            </div>
+        })
+    }
 
     return (
         <div>
-            <h1 id="titulo">Titulo</h1>
-            <TaskCard />
-            <div style={{marginTop:"40%"}}>
+            <h1 id="titulo">{props.list.name}</h1>
+            {tasks}
+            <div style={{ marginTop: "40%" }}>
                 <NewTask />
             </div>
         </div>
