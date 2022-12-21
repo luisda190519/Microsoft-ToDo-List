@@ -21,7 +21,7 @@ const NewList = function (props) {
                 onChange={(e) => handleChange(e)}
             />
             <button
-                class="btn btn-outline-secondary"
+                className="btn btn-outline-secondary"
                 type="button"
                 onClick={(e) => handleClick(e)}
             >

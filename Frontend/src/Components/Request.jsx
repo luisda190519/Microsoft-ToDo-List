@@ -9,7 +9,7 @@ export const getRequest = async (name) => {
     return resData;
 };
 
-export const postRequest = async (name) => {
+export const postRequest = async (name, data) => {
     const response = await fetch(URL + name, {
         method: "POST",
         headers: {
@@ -28,14 +28,13 @@ export const deleteRequest = async (name) => {
         headers: {
             "Content-type": "application/json",
         },
-        body: JSON.stringify(data),
     });
 
     const resData = await response.json();
     return resData;
 };
 
-export const putRequest = async (name) => {
+export const putRequest = async (name, data) => {
     const response = await fetch(URL + name, {
         method: "PUT",
         headers: {

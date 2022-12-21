@@ -17,9 +17,11 @@ const TaskBody = function (props) {
     }
 
     if (!isLoading) {
+        data.sort((a, b) => Number(a.finished) - Number(b.finished));
+        data.sort((a, b) => Number(b.important) - Number(a.important));
         tasks = data.map((task, i) =>{
             return <div className="mb-4" key={i}>
-                <TaskCard name={task.name}/>
+                <TaskCard task={task}/>
             </div>
         })
     }
