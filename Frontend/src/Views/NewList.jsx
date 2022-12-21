@@ -4,8 +4,11 @@ import { postRequest } from "../Components/Request";
 const NewList = function (props) {
     const [name, setName] = useState("")
 
-    const handleClick = function(e){
-        
+    const handleClick = async function(e){
+        let data = {
+            name: name
+        }
+        const res = await postRequest("/lists/", data)
     }
 
     const handleChange = function(e){

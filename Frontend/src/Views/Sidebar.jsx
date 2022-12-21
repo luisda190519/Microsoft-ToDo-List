@@ -62,8 +62,7 @@ const Sidebar = function (props) {
                     </div>
 
                     <div
-                        className="list-group list-group-flush mx-3"
-                        style={{ marginTop: "175%" }}
+                        className="list-group list-group-flush mx-3 mt-5"
                     >
                         <SidebarCard
                             label="New List"

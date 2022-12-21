@@ -4,7 +4,12 @@ import { useState, useEffect, useParams } from "react";
 import useFetch from "react-fetch-hook";
 
 const TaskBody = function (props) {
-    const { isLoading, data, error } = useFetch("http://localhost:3000/tasks/" + props.list.id);
+    let url = "important"
+    if(props.list.id !== undefined){
+        url = props.list.id
+    }
+
+    const { isLoading, data, error } = useFetch("http://localhost:3000/tasks/" + url);
     let tasks = null;
 
     if (error) {
@@ -31,7 +36,7 @@ const TaskBody = function (props) {
             <h1 id="titulo">{props.list.name}</h1>
             {tasks}
             <div style={{ marginTop: "40%" }}>
-                <NewTask />
+                <NewTask list={props.list.id}/>
             </div>
         </div>
     );

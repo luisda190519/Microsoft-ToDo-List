@@ -1,7 +1,26 @@
-const NewTask = function () {
+import { useState } from "react";
+import { postRequest } from "./Request";
+
+const NewTask = function (props) {
+    const [Text, setText] = useState("")
+
+    const handleChange = function(e){
+        setText(e.target.value)
+    }
+
+    const handleClick = async function(e){
+        let data = {
+            name: Text,
+            finished: false,
+            important: false,
+            List: props.list
+        }
+        const res = await postRequest("/tasks/" + props.list, data)
+    }
+
     return (
         <div className="input-group">
-            <div className="input-group-text">
+            <div className="input-group-text" onClick={(e) => handleClick(e)}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -16,7 +35,7 @@ const NewTask = function () {
                     />
                 </svg>
             </div>
-            <input type="text" placeholder="Add new task" className="form-control"/>
+            <input type="text" placeholder="Add new task" className="form-control" onChange={(e) => handleChange(e)}/>
         </div>
     );
 };

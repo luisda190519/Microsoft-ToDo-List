@@ -10,7 +10,7 @@ import NewList from "./Views/NewList";
 import "./CSS/TaskBody.css";
 
 const App = function (props) {
-    const [list, setList] = useState(1);
+    const [list, setList] = useState({name:"Important"});
 
     const setListBySideBar = function(list){
       setList(list)

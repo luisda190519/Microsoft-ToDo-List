@@ -13,13 +13,15 @@ const TaskCard = function (props) {
             List: props.task.List,
         };
 
-        data[label] = !data[label];
-        const res = await putRequest("/task/" + props.task.id, data);
-
         if (label === "finished") {
-            return setFinished(!props.task.finished);
+            setFinished(!finished);
+            data[label] = !finished;
+        } else {
+            setImportant(!important);
+            data[label] = !important;
         }
-        return setImportant(!props.task.important);
+
+        const res = await putRequest("/task/" + props.task.id, data);
     };
 
     const onDelete = async function (e) {
