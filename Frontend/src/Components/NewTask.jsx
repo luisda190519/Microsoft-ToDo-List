@@ -2,20 +2,26 @@ import { useState } from "react";
 import { postRequest } from "./Request";
 
 const NewTask = function (props) {
-    const [Text, setText] = useState("")
+    const [Text, setText] = useState("Add new task");
 
-    const handleChange = function(e){
-        setText(e.target.value)
-    }
+    const handleChange = function (e) {
+        setText(e.target.value);
+    };
 
-    const handleClick = async function(e){
+    const handleClick = async function (e) {
         let data = {
             name: Text,
             finished: false,
             important: false,
-            List: props.list
-        }
+            List: props.list,
+        };
+        
         const res = await postRequest("/tasks/" + props.list, data)
+        setText("Add new task");
+    };
+
+    const handleInputClick = function(e){
+        setText("")
     }
 
     return (
@@ -35,7 +41,15 @@ const NewTask = function (props) {
                     />
                 </svg>
             </div>
-            <input type="text" placeholder="Add new task" className="form-control" onChange={(e) => handleChange(e)}/>
+            <input
+                type="text"
+                placeholder="Add new task"
+                className="form-control"
+                value={Text}
+                onChange={(e) => handleChange(e)}
+                onClick={(e) => handleInputClick(e)}
+                style={{ color: "gray" }}
+            />
         </div>
     );
 };

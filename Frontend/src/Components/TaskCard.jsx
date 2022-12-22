@@ -4,6 +4,7 @@ import { useState } from "react";
 const TaskCard = function (props) {
     const [important, setImportant] = useState(props.task.important);
     const [finished, setFinished] = useState(props.task.finished);
+    const [text, setText] = useState("");
 
     const onChange = async function (e, label) {
         let data = {
@@ -26,6 +27,20 @@ const TaskCard = function (props) {
 
     const onDelete = async function (e) {
         const res = await deleteRequest("/task/" + props.task.id);
+    };
+
+    const handleChange = function (e) {
+        setText(e.target.value);
+    };
+
+    const handleUpdate = async function (e) {
+        let data = {
+            name: text,
+            finished: props.task.finished,
+            important: props.task.important,
+            List: props.task.List,
+        };
+        const res = await putRequest("/task/" + props.task.id, data);
     };
 
     return (
@@ -66,6 +81,8 @@ const TaskCard = function (props) {
                         : "form-control"
                 }
                 defaultValue={props.task.name}
+                onChange={(e) => handleChange(e)}
+                onBlur={(e) => handleUpdate(e)}
             />
             <div
                 className="input-group-text"

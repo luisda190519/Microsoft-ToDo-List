@@ -35,8 +35,8 @@ const TaskBody = function (props) {
         <div>
             <h1 id="titulo">{props.list.name}</h1>
             {tasks}
-            <div style={{ marginTop: "40%" }}>
-                <NewTask list={props.list.id}/>
+            <div className="mt-5">
+                <NewTask list={url}/>
             </div>
         </div>
     );
