@@ -18,6 +18,7 @@ const NewTask = function (props) {
         
         const res = await postRequest("/tasks/" + props.list, data)
         setText("Add new task");
+        window.location.reload(true)
     };
 
     const handleInputClick = function(e){

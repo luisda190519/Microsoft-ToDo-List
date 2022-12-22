@@ -9,6 +9,7 @@ const NewList = function (props) {
             name: name
         }
         const res = await postRequest("/lists/", data)
+        window.location.reload(true)
     }
 
     const handleChange = function(e){
