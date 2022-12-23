@@ -53,9 +53,9 @@ const TaskCard = function (props) {
                 onClick={(e) => onChange(e, "finished")}
             >
                 {finished ? (
-                    <i class="bi bi-circle-fill"></i>
+                    <i className="bi bi-circle-fill"></i>
                 ) : (
-                    <i class="bi bi-circle"></i>
+                    <i className="bi bi-circle"></i>
                 )}
             </div>
             <input
@@ -74,9 +74,9 @@ const TaskCard = function (props) {
                 onClick={(e) => onChange(e, "important")}
             >
                 {important ? (
-                    <i class="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
                 ) : (
-                    <i class="bi bi-star"></i>
+                    <i className="bi bi-star"></i>
                 )}
             </div>
             <div className="input-group-text" onClick={(e) => onDelete(e)}>

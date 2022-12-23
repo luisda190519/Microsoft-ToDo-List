@@ -6,13 +6,13 @@ const SidebarCard = function (props) {
 
     switch (props.type) {
         case "add":
-            cardImage = <i class="bi bi-plus-lg"></i>;
+            cardImage = <i className="bi bi-plus-lg"></i>;
             break;
         case "list":
-            cardImage = <i class="bi bi-list-check"></i>;
+            cardImage = <i className="bi bi-list-check"></i>;
             break;
         case "star":
-            cardImage = <i class="bi bi-star"></i>;
+            cardImage = <i className="bi bi-star"></i>;
             break;
     }
 

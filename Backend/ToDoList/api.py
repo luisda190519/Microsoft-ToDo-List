@@ -45,7 +45,7 @@ class setListById(APIView):
     if not instance:
       return Response({"res": "List not finded"}, status=status.HTTP_400_BAD_REQUEST)
     
-    data = {"name" : request.data.get("name")}
+    data = {"name" : request.data.get("name"), "active" : request.data.get("active")}
     serializer = ListaSerializer(instance = instance, data = data, partial = True)
 
     if serializer.is_valid():
