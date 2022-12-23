@@ -4,10 +4,20 @@ body {
 
 #titulo {
     color: black;
-    padding-bottom: 15px;
+}
+
+#trashIcon{
+    width: 100px;
+    font-size:2em;  
+}
+
+#pencilIcon{
+    width: 100px;
+    font-size:2em;  
 }
 
 #taskbody {
     margin-left: 280px;
     margin-top: 70px;
 }
+

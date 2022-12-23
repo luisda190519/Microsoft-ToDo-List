@@ -24,7 +24,8 @@ const App = function (props) {
     };
 
     const setListBySideBar = function(list){
-      setList(list)
+      setList(list);
+      getLists();
     } 
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const App = function (props) {
         <div>
             <Sidebar setListParent={setListBySideBar} lists={lists}/>
             <div className="container w-75" id="taskbody">
-                {list ? <TaskBody list={list} /> : <NewList getLists={getLists} setListParent={setListBySideBar} />}
+                {list ? <TaskBody list={list} setListParent={setListBySideBar}/> : <NewList getLists={getLists} setListParent={setListBySideBar} />}
             </div>
         </div>
     );
