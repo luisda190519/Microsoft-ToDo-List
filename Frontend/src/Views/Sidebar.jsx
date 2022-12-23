@@ -1,40 +1,15 @@
 import SidebarCard from "../Components/SidebarCard";
 import "../CSS/Sidebar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "react-fetch-hook";
+import { getRequest } from "../Components/Request";
 
 const Sidebar = function (props) {
-    const [list, setList] = useState(1);
-    const { isLoading, data, error } = useFetch("http://localhost:3000/lists");
-    let listCards = null;
+    const [lists, setList] = useState([]);
 
-    const setListBySideBar = function (list) {
-        setList(list);
-        props.setListParent(list);
+    const setListBySideBar = function (lists) {
+        props.setListParent(lists);
     };
-
-    if (error) {
-        return (
-            <div>
-                <p>Code: ${error.status}</p>
-                <p>Message: ${error.statusText}</p>
-            </div>
-        );
-    }
-
-    if (!isLoading) {
-        listCards = data.map((list, i) => {
-            return (
-                <SidebarCard
-                    label={list.name}
-                    type="list"
-                    setListParent={setListBySideBar}
-                    list={list}
-                    key={i}
-                />
-            );
-        });
-    }
 
     return (
         <header id="sidebar">
@@ -58,12 +33,20 @@ const Sidebar = function (props) {
                             setListParent={setListBySideBar}
                             list={{ id: "important", name: "Important" }}
                         />
-                        {listCards}
+                        {props.lists.map((list, i) => {
+                            return (
+                                <SidebarCard
+                                    label={list.name}
+                                    type="list"
+                                    setListParent={setListBySideBar}
+                                    list={list}
+                                    key={list.id}
+                                />
+                            );
+                        })}
                     </div>
 
-                    <div
-                        className="list-group list-group-flush mx-3 mt-5"
-                    >
+                    <div className="list-group list-group-flush mx-3 mt-5">
                         <SidebarCard
                             label="New List"
                             type="add"
