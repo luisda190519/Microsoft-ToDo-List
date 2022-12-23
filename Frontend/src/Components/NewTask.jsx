@@ -9,6 +9,7 @@ const NewTask = function (props) {
     };
 
     const handleClick = async function (e) {
+        e.preventDefault();
         let data = {
             name: Text,
             finished: false,
@@ -18,7 +19,7 @@ const NewTask = function (props) {
         
         const res = await postRequest("/tasks/" + props.list, data)
         setText("Add new task");
-        window.location.reload(true)
+        //window.location.reload(true)
     };
 
     const handleInputClick = function(e){

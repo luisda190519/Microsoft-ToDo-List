@@ -23,10 +23,12 @@ const TaskCard = function (props) {
         }
 
         const res = await putRequest("/task/" + props.task.id, data);
+        await props.listTasks();
     };
 
     const onDelete = async function (e) {
         const res = await deleteRequest("/task/" + props.task.id);
+        await props.listTasks();
     };
 
     const handleChange = function (e) {
@@ -41,6 +43,7 @@ const TaskCard = function (props) {
             List: props.task.List,
         };
         const res = await putRequest("/task/" + props.task.id, data);
+        await props.listTasks();
     };
 
     return (
