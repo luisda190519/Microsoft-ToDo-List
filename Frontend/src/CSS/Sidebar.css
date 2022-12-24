@@ -36,3 +36,9 @@ body {
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
+
+#logout{
+    position: fixed;
+    margin-top: -60px;
+    font-size:2em;  
+}

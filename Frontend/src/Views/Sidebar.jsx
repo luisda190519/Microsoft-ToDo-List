@@ -1,15 +1,21 @@
 import SidebarCard from "../Components/SidebarCard";
 import "../CSS/Sidebar.css";
 import { useState, useEffect } from "react";
-import useFetch from "react-fetch-hook";
-import { getRequest } from "../Components/Request";
+import { postRequest } from "../Components/Request";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = function (props) {
     const [lists, setList] = useState([]);
+    const navigate = useNavigate()
 
     const setListBySideBar = function (lists) {
         props.setListParent(lists);
     };
+
+    const logout = async function(e){
+        const res = await postRequest("/logout/",{})
+        navigate("/login")
+    }
 
     return (
         <header id="sidebar">
@@ -17,6 +23,9 @@ const Sidebar = function (props) {
                 id="sidebarMenu"
                 className="collapse d-lg-block sidebar collapse bg-white"
             >
+
+                <i className="bi bi-box-arrow-left" id="logout" onClick={e => logout(e)}></i>
+
                 <div className="container mx-2 my-1">
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/9/91/Samsung_Galaxy_Logo.png"
