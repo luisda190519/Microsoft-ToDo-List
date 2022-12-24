@@ -1,14 +1,13 @@
 const PageNotFound = function () {
     return (
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Page not found</h5>
-                <p class="card-text">
-                    Go to a specific useful url
-                </p>
-                <a href="/list/1" class="btn btn-primary">
-                    Go to lists
-                </a>
+        <div className="d-flex align-items-center justify-content-center vh-100">
+            <div className="text-center">
+                <h1 className="display-1 fw-bold">404</h1>
+                <p className="fs-3"> <span className="text-danger">Opps!</span> Page not found.</p>
+                <p className="lead">
+                    The page you’re looking for doesn’t exist.
+                  </p>
+                <a href="/" className="btn btn-primary">Go Home</a>
             </div>
         </div>
     );
