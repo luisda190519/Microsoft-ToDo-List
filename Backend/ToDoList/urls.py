@@ -1,5 +1,6 @@
 from django.urls import path
-from .api import getLists, setListById, setTaskById, getTasksByList, getImportantTasks
+from .tasksAPI import getLists, setListById, setTaskById, getTasksByList, getImportantTasks
+from .authAPI import *
 from . import views
 
 urlpatterns = [
