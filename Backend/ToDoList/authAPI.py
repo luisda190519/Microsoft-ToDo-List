@@ -7,9 +7,6 @@ from rest_framework import serializers
 from .serializers import userSerializer
 
 class signup(APIView):
-    def get(self, request, *args, **kwargs):
-        return Response(request.user, status=status.HTTP_200_OK)
-
     def post(self, request, *args, **kwargs):
         try:
             user = User.objects.create_user(username = request.data.get('username'), password = request.data.get('password'))
@@ -35,4 +32,14 @@ class signout(APIView):
     def post(self, request, *args, **kwargs):
         logout(request)
         return Response({"res" : "logout correctly"}, status=status.HTTP_200_OK)
+
+#get the user logged
+class getUser(APIView):
+    def get(self, request, userID, *args, **kwargs):
+        user = User.objects.filter(id = userID)
+        serializer = userSerializer(user, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
 

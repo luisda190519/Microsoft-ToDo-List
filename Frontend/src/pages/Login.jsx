@@ -18,6 +18,7 @@ const Login = function(props){
         console.log(res)
 
         if(res.res !== "username or password incorrect"){
+            props.setUsername(res)
             return navigate("/")
         }
         return setIncorrect(true)

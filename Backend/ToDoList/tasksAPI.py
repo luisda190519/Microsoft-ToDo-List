@@ -7,6 +7,8 @@ from rest_framework import status
 #Get the list of lists and the post request to add a new list
 class getLists(APIView):
   def get(self, request, *args, **kwargs):
+    print("********************")
+    print(request.user)
     queryset = Lista.objects.filter(user=request.user.id)
     serializer = ListaSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)

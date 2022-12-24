@@ -1,6 +1,6 @@
 from django.urls import path
 from .tasksAPI import getLists, setListById, setTaskById, getTasksByList, getImportantTasks
-from .authAPI import signup, sigin, signout
+from .authAPI import signup, sigin, signout, getUser
 from . import views
 
 urlpatterns = [
@@ -11,5 +11,6 @@ urlpatterns = [
     path("tasks/important/", getImportantTasks.as_view()),
     path("login/", sigin.as_view(), name="login"),
     path("logout/", signout.as_view(), name="logout"),
-    path("register/", signup.as_view(), name="register")
+    path("register/", signup.as_view(), name="register"),
+    path("user/<int:userID>", getUser.as_view(), name="register")
 ]

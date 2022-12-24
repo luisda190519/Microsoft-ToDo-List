@@ -18,6 +18,7 @@ const Signup = function (props) {
         console.log(res)
 
         if(res.res !== "error"){
+            props.setUsername(res)
             return navigate("/")
         }
         return setIncorrect(true)
