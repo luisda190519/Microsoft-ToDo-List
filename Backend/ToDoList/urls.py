@@ -9,7 +9,7 @@ urlpatterns = [
     path("tasks/<int:listID>", getTasksByList.as_view()),
     path("task/<int:taskID>", setTaskById.as_view()),
     path("tasks/important/", getImportantTasks.as_view()),
-    path("login/", sigin.as_view()),
-    path("logout/", signout.as_view()),
-    path("register/", signup.as_view())
+    path("login/", sigin.as_view(), name="login"),
+    path("logout/", signout.as_view(), name="logout"),
+    path("register/", signup.as_view(), name="register")
 ]

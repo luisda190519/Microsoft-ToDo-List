@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Lista(models.Model):
   name = models.CharField(max_length=100)
   active = models.BooleanField(default=False)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null = True)
 
   def __str__(self):
     return self.name
@@ -16,7 +16,7 @@ class Task(models.Model):
   finished = models.BooleanField(default=False)
   important = models.BooleanField(default=False)
   List = models.ForeignKey(Lista, on_delete=models.CASCADE)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null = True)
 
   def __str__(self):
     return self.name

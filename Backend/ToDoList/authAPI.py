@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import serializers
 
 class signup(APIView):
     def get(self, request, *args, **kwargs):
@@ -13,9 +14,10 @@ class signup(APIView):
             user = User.objects.create_user(request.data.get('username'), request.data.get('password'))
             user.save()
             login(request, user)
-            return Response(user, status=status.HTTP_200_OK)
+            #data = serializers.serialize("json", user)
+            return Response({"res":"hola"}, status=status.HTTP_200_OK)
         except:
-            print("error")
+            return Response({"error":"idk bro"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class sigin(APIView):
@@ -24,7 +26,8 @@ class sigin(APIView):
         if user is None:
             return Response({"res":"username or password incorrect"}, status=status.HTTP_400_BAD_REQUEST)
         login(request, user)
-        return Response(user, status=status.HTTP_200_OK)
+        data = serializers.serialize("json", user)
+        return Response(data, status=status.HTTP_200_OK)
 
 #Cierra sesion, el request.user es una cookie como tal
 class signout(APIView):
