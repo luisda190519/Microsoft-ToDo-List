@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postRequest } from "../Components/Request";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const Login = function(props){  
     const [username, setUsername] = useState("")
@@ -9,6 +10,7 @@ const Login = function(props){
     const navigate = useNavigate()
 
     const login = async function(e){
+        e.preventDefault();
         const data = {
             username : username, 
             password : password
@@ -21,6 +23,7 @@ const Login = function(props){
             props.setUsername(res)
             return navigate("/")
         }
+        Swal.fire(res)
         return setIncorrect(true)
     }
 

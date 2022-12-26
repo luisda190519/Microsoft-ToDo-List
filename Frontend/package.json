@@ -14,7 +14,8 @@
     "react-bootstrap-sidebar-menu": "^2.0.3",
     "react-dom": "^18.2.0",
     "react-fetch-hook": "^1.9.5",
-    "react-router-dom": "^6.5.0"
+    "react-router-dom": "^6.5.0",
+    "sweetalert2": "^11.6.16"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

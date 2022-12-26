@@ -12,5 +12,5 @@ urlpatterns = [
     path("login/", sigin.as_view(), name="login"),
     path("logout/", signout.as_view(), name="logout"),
     path("register/", signup.as_view(), name="register"),
-    path("user/<int:userID>", getUser.as_view(), name="register")
+    path("user/", getUser.as_view(), name="register")
 ]

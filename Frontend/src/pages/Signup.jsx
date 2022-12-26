@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postRequest } from "../Components/Request";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const Signup = function (props) {
     const [username, setUsername] = useState("")
@@ -21,6 +22,7 @@ const Signup = function (props) {
             props.setUsername(res)
             return navigate("/")
         }
+        Swal.fire(res)
         return setIncorrect(true)
     }
 
