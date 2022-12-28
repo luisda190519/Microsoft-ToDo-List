@@ -21,6 +21,7 @@ const Login = function(props){
 
         if(res.res !== "username or password incorrect"){
             props.setUsername(res)
+            localStorage.setItem('user', JSON.stringify(res))
             return navigate("/")
         }
         Swal.fire(res)

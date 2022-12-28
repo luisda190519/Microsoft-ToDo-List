@@ -10,6 +10,7 @@ const Signup = function (props) {
     const navigate = useNavigate()
 
     const createAccount = async function(e){
+        e.preventDefault();
         const data = {
             username : username, 
             password : password
@@ -20,6 +21,7 @@ const Signup = function (props) {
 
         if(res.res !== "error"){
             props.setUsername(res)
+            localStorage.setItem('user', JSON.stringify(res))
             return navigate("/")
         }
         Swal.fire(res)
