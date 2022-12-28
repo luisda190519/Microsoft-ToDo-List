@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const URL = "http://localhost:3000";
 const error_reponse = "Something wrong happened";
 

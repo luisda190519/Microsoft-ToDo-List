@@ -4,7 +4,7 @@ import Signup from "./pages/Signup";
 import PageNotFound from "./Views/PageNotFound";
 import AuthProvider from "./Components/authProvider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 const App = function () {
     const [userID, setUserID] = useState(false);
@@ -29,3 +29,4 @@ const App = function () {
 };
 
 export default App;
+
