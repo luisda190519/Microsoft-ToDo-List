@@ -16,6 +16,7 @@ export const postRequest = async (name, data) => {
             "Content-type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: 'include',
     });
 
     const resData = await response.json();
@@ -28,6 +29,7 @@ export const deleteRequest = async (name) => {
         headers: {
             "Content-type": "application/json",
         },
+        credentials: 'include',
     });
 
     const resData = await response.json();
@@ -41,6 +43,7 @@ export const putRequest = async (name, data) => {
             "Content-type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: 'include',
     });
 
     const resData = await response.json();

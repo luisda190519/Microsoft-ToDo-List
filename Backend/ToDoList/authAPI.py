@@ -35,8 +35,8 @@ class signout(APIView):
 
 #get the user logged
 class getUser(APIView):
-    def get(self, request, userID, *args, **kwargs):
-        user = User.objects.filter(id = userID)
+    def get(self, request, *args, **kwargs):
+        user = request.user
         serializer = userSerializer(user, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

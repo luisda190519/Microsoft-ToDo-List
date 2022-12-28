@@ -9,6 +9,7 @@ const Login = function(props){
     const navigate = useNavigate()
 
     const login = async function(e){
+        e.preventDefault();
         const data = {
             username : username, 
             password : password
@@ -19,6 +20,7 @@ const Login = function(props){
 
         if(res.res !== "username or password incorrect"){
             props.setUsername(res)
+            localStorage.setItem('user', JSON.stringify(res))
             return navigate("/")
         }
         return setIncorrect(true)
