@@ -5,14 +5,13 @@ import useFetch from "react-fetch-hook";
 import { getRequest, deleteRequest, putRequest } from "../Components/Request";
 
 const TaskBody = function (props) {
-    let url = "important";
     const [tasks, setTasks] = useState([]);
     const [edit, setEdit] = useState(false);
     const [text, setText] = useState(props.list.name);
 
     const listTasks = async function () {
         try {
-            const data = await getRequest("/tasks/" + url + "/" + props.userID);
+            const data = await getRequest("/tasks/" + (props.list.id ? props.list.id : "important") + "/" + props.userID);
             data.sort((a, b) => Number(a.finished) - Number(b.finished));
             data.sort((a, b) => Number(b.important) - Number(a.important));
             setTasks(data);
@@ -23,7 +22,7 @@ const TaskBody = function (props) {
     };
 
     const deleteList = async function (e) {
-        const res = await deleteRequest("/list/" + url + "/" + props.userID);
+        const res = await deleteRequest("/list/" + (props.list.id ? props.list.id : "important") + "/" + props.userID);
         props.setListParent({ name: "Important" });
     };
 
@@ -41,19 +40,14 @@ const TaskBody = function (props) {
             name:text,
             active:false
         }
-        const res = await putRequest("/list/" + url + "/" + props.userID, data)
+        const res = await putRequest("/list/" + (props.list.id ? props.list.id : "important") + "/" + props.userID, data)
         setEdit(!edit);
         props.setListParent(res);
     }
 
-    if (props.list.id !== undefined) {
-        url = props.list.id;
-        listTasks();
-    }
-
     useEffect(() => {
         listTasks();
-    }, []);
+    }, [props.list.id, tasks]);
 
     return (
         <div>
@@ -100,7 +94,7 @@ const TaskBody = function (props) {
                 );
             })}
             <div className="mt-5">
-                <NewTask list={url} userID={props.userID}/>
+                <NewTask list={(props.list.id ? props.list.id : "important")} userID={props.userID}/>
             </div>
         </div>
     );
