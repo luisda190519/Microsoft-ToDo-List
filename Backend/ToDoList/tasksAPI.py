@@ -6,15 +6,13 @@ from rest_framework import status
 
 #Get the list of lists and the post request to add a new list
 class getLists(APIView):
-  def get(self, request, *args, **kwargs):
-    print("********************")
-    print(request.user)
-    queryset = Lista.objects.filter(user=request.user.id)
+  def get(self, request, userID, *args, **kwargs):
+    queryset = Lista.objects.filter(user=userID)
     serializer = ListaSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-  def post(self, request, *args, **kwargs):
-    data = {"name":request.data.get('name'), "user":request.user.id}
+  def post(self, request, userID, *args, **kwargs):
+    data = {"name":request.data.get('name'), "user":userID}
     serializer = ListaSerializer(data=data)
     
     if serializer.is_valid():
@@ -31,8 +29,8 @@ class setListById(APIView):
     except:
       return None
 
-  def get(self, request, listID, *args, **kwargs):
-    queryset = self.get_object(listID, request.user.id)
+  def get(self, request, listID, userID, *args, **kwargs):
+    queryset = self.get_object(listID, userID)
     
     if not queryset:
       return Response({"res": "List not finded"}, status=status.HTTP_400_BAD_REQUEST)
@@ -40,13 +38,13 @@ class setListById(APIView):
     serializer = ListaSerializer(queryset)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-  def put(self, request, listID, *args, **kwargs):
-    instance = self.get_object(listID, request.user.id)
+  def put(self, request, listID, userID, *args, **kwargs):
+    instance = self.get_object(listID, userID)
 
     if not instance:
       return Response({"res": "List not finded"}, status=status.HTTP_400_BAD_REQUEST)
     
-    data = {"name" : request.data.get("name"), "active" : request.data.get("active"), "user" : request.user.id}
+    data = {"name" : request.data.get("name"), "active" : request.data.get("active"), "user" : userID}
     serializer = ListaSerializer(instance = instance, data = data, partial = True)
 
     if serializer.is_valid():
@@ -54,8 +52,8 @@ class setListById(APIView):
       return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-  def delete(self, request, listID, *args, **kwargs):
-    instance = self.get_object(listID, request.user.id)
+  def delete(self, request, listID, userID, *args, **kwargs):
+    instance = self.get_object(listID, userID)
 
     if not instance:
       return Response({"res":"List not finded"}, status=status.HTTP_400_BAD_REQUEST)
@@ -66,18 +64,18 @@ class setListById(APIView):
 
 #Get the list of tasks by their list and add new tasks
 class getTasksByList(APIView):
-  def get(self, request, listID, *args, **kwargs):
-    queryset = Task.objects.filter(List = listID, user = request.user.id)
+  def get(self, request, listID, userID, *args, **kwargs):
+    queryset = Task.objects.filter(List = listID, user = userID)
     serializer = TaskSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-  def post(self, request, listID, *args, **kwargs):
+  def post(self, request, listID, userID, *args, **kwargs):
     data = {
       "name":request.data.get('name'),
       "finished":request.data.get("finished"),
       "important":request.data.get("important"),
       "List":request.data.get("List"),
-      "user" : request.user.id
+      "user" : userID
       }
 
     serializer = TaskSerializer(data=data)
@@ -95,8 +93,8 @@ class setTaskById(APIView):
     except:
       return None
 
-  def get(self, request, taskID, *args, **kwargs):
-    instance = self.get_object(taskID, request.user.id)
+  def get(self, request, taskID, userID, *args, **kwargs):
+    instance = self.get_object(taskID, userID)
     
     if not instance:
       return Response({"res": "Task not finded"}, status=status.HTTP_400_BAD_REQUEST)
@@ -104,8 +102,8 @@ class setTaskById(APIView):
     serializer = TaskSerializer(instance)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-  def put(self, request, taskID, *args, **kwargs):
-    instance = self.get_object(taskID, request.user.id)
+  def put(self, request, taskID, userID, *args, **kwargs):
+    instance = self.get_object(taskID, userID)
 
     if not instance:
       return Response({"res": "List not finded"}, status=status.HTTP_400_BAD_REQUEST)
@@ -115,7 +113,7 @@ class setTaskById(APIView):
       "finished":request.data.get("finished"),
       "important":request.data.get("important"),
       "List":request.data.get("List"),
-      "user":request.user.id
+      "user":userID
       }
 
     serializer = TaskSerializer(instance = instance, data = data, partial = True)
@@ -125,8 +123,8 @@ class setTaskById(APIView):
       return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-  def delete(self, request, taskID, *args, **kwargs):
-    instance = self.get_object(taskID, request.user.id)
+  def delete(self, request, taskID, userID, *args, **kwargs):
+    instance = self.get_object(taskID, userID)
 
     if not instance:
       return Response({"res":"List not finded"}, status=status.HTTP_400_BAD_REQUEST)
@@ -136,7 +134,7 @@ class setTaskById(APIView):
 
 #Get important tasks
 class getImportantTasks(APIView):
-  def get(self, request, *args, **kwargs):
-    queryset = Task.objects.filter(important = True, user = request.user.id)
+  def get(self, request, userID, *args, **kwargs):
+    queryset = Task.objects.filter(important = True, user = userID)
     serializer = TaskSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)

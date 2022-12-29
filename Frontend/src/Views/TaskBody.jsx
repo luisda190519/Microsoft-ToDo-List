@@ -12,7 +12,7 @@ const TaskBody = function (props) {
 
     const listTasks = async function () {
         try {
-            const data = await getRequest("/tasks/" + url);
+            const data = await getRequest("/tasks/" + url + "/" + props.userID);
             data.sort((a, b) => Number(a.finished) - Number(b.finished));
             data.sort((a, b) => Number(b.important) - Number(a.important));
             setTasks(data);
@@ -23,7 +23,7 @@ const TaskBody = function (props) {
     };
 
     const deleteList = async function (e) {
-        const res = await deleteRequest("/list/" + url);
+        const res = await deleteRequest("/list/" + url + "/" + props.userID);
         props.setListParent({ name: "Important" });
     };
 
@@ -41,7 +41,7 @@ const TaskBody = function (props) {
             name:text,
             active:false
         }
-        const res = await putRequest("/list/" + url, data)
+        const res = await putRequest("/list/" + url + "/" + props.userID, data)
         setEdit(!edit);
         props.setListParent(res);
     }
@@ -95,12 +95,12 @@ const TaskBody = function (props) {
             {tasks.map((task, i) => {
                 return (
                     <div className="mb-4" key={task.id}>
-                        <TaskCard task={task} listTasks={listTasks} />
+                        <TaskCard task={task} listTasks={listTasks} userID={props.userID}/>
                     </div>
                 );
             })}
             <div className="mt-5">
-                <NewTask list={url} />
+                <NewTask list={url} userID={props.userID}/>
             </div>
         </div>
     );

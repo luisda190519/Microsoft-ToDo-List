@@ -2,23 +2,26 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./Views/PageNotFound";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Route, Routes, Navigate  } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const App = function (props) {
-    const [userID, setUserID] = useState(false);
-    const { auth, setAuth } = useState();
+    const [user, setUser] = useState(() =>
+        localStorage.getItem("user")
+            ? JSON.parse(localStorage.getItem("user"))
+            : false
+    );
 
-    const setUsername = function(username){
-        setUserID(username.id)
+    const setAuth = function(user){
+        setUser(user)
     }
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home userID={userID}/>} />
-                <Route path="/login" element={<Login setUsername={setUsername}/>} />
-                <Route path="/signup" element={<Signup setUsername={setUsername}/>} />
+                <Route path="/" element={ user ? <Home userID={user.id}/> : <Navigate replace to="/login" /> } />
+                <Route path="/login" element={<Login setAuth={setAuth}/>} />
+                <Route path="/signup" element={<Signup setAuth={setAuth} />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>

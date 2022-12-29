@@ -24,6 +24,7 @@ class sigin(APIView):
         if user is None:
             return Response({"res":"username or password incorrect"}, status=status.HTTP_400_BAD_REQUEST)
         login(request, user)
+        request.user = user 
         serializer = userSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -35,9 +36,9 @@ class signout(APIView):
 
 #get the user logged
 class getUser(APIView):
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        serializer = userSerializer(user, many=True)
+    def get(self, request, userID, *args, **kwargs):
+        user = User.objects.get(id = userID)
+        serializer = userSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

@@ -15,7 +15,7 @@ const Home = function (props) {
 
     const getLists = async function () {
         try {
-            const data = await getRequest("/lists");
+            const data = await getRequest("/lists/" + props.userID);
             setLists(data);
         } catch (error) {
             console.log(error);
@@ -36,11 +36,12 @@ const Home = function (props) {
             <Sidebar setListParent={setListBySideBar} lists={lists} />
             <div className="container w-75" id="taskbody">
                 {list ? (
-                    <TaskBody list={list} setListParent={setListBySideBar} />
+                    <TaskBody list={list} setListParent={setListBySideBar} userID={props.userID}/>
                 ) : (
                     <NewList
                         getLists={getLists}
                         setListParent={setListBySideBar}
+                        userID={props.userID}
                     />
                 )}
             </div>

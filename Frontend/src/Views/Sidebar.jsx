@@ -14,6 +14,7 @@ const Sidebar = function (props) {
 
     const logout = async function(e){
         const res = await postRequest("/logout/",{})
+        localStorage.removeItem("user");
         navigate("/login")
     }
 

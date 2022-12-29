@@ -8,7 +8,7 @@ const NewList = function (props) {
         let data = {
             name: name
         }
-        const res = await postRequest("/lists/", data)
+        const res = await postRequest("/lists/" + props.userID, data)
         props.getLists();
         props.setListParent(res)
     }

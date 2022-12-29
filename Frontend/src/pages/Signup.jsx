@@ -19,8 +19,8 @@ const Signup = function (props) {
         console.log(res)
 
         if(res.res !== "error"){
-            props.setUsername(res)
             localStorage.setItem('user', JSON.stringify(res))
+            props.setAuth(res)
             return navigate("/")
         }
         return setIncorrect(true)

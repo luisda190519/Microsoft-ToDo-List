@@ -22,12 +22,12 @@ const TaskCard = function (props) {
             data[label] = !important;
         }
 
-        const res = await putRequest("/task/" + props.task.id, data);
+        const res = await putRequest("/task/" + props.task.id + "/" + props.userID, data);
         await props.listTasks();
     };
 
     const onDelete = async function (e) {
-        const res = await deleteRequest("/task/" + props.task.id);
+        const res = await deleteRequest("/task/" + props.task.id + "/" + props.userID);
         await props.listTasks();
     };
 
@@ -42,7 +42,7 @@ const TaskCard = function (props) {
             important: props.task.important,
             List: props.task.List,
         };
-        const res = await putRequest("/task/" + props.task.id, data);
+        const res = await putRequest("/task/" + props.task.id + "/" + props.userID, data);
         await props.listTasks();
     };
 

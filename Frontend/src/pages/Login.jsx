@@ -19,8 +19,8 @@ const Login = function(props){
         console.log(res)
 
         if(res.res !== "username or password incorrect"){
-            props.setUsername(res)
             localStorage.setItem('user', JSON.stringify(res))
+            props.setAuth(res)
             return navigate("/")
         }
         return setIncorrect(true)

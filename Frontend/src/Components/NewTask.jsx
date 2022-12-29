@@ -17,7 +17,7 @@ const NewTask = function (props) {
             List: props.list,
         };
         
-        const res = await postRequest("/tasks/" + props.list, data)
+        const res = await postRequest("/tasks/" + props.list + "/" + props.userID, data)
         setText("Add new task");
     };
 
