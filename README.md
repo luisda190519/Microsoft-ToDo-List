@@ -6,7 +6,7 @@ This is a project that simulates, the Microsoft To Do application, where users c
 
 ## Installation
 
-To install all the dependencies used by this app, first go to the Frontend folder and type
+To install all the dependencies used by this app, first go to the Frontend folder and type.
 
 ```bash
   npm install
